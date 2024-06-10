@@ -1,54 +1,32 @@
+"use client";
+
 import { useState } from "react";
 import styled from "styled-components";
-import { HashLink } from "react-router-hash-link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 
-import LanguageSelector from "./LanguageSelector";
-import { Text } from "../contexts/LanguageContext";
 import Menu from "./Menu";
+import Link from "next/link";
 
-const Header = ({ scrollPercentage }) => {
+const Header = ({ scrollPercentage, screenSize }) => {
   const [rollDown, setRollDown] = useState(false);
-
-  const scrollWithOffset = (el, yOffset) => {
-    const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
-    window.scrollTo({ top: yCoordinate + yOffset, behavior: "smooth" });
-  };
 
   return (
     <Wrapper>
       <Content>
-        <Logo
-          src="/assets/thriveLogo2.png"
-          alt="logo clôtures cinq étoiles"
-        />
-        {window.screen.width > 1000 ? (
+        <Logo src="/assets/thriveLogo2.png" alt="Thrive Dental Logo" />
+        {screenSize === "large" ? (
           <Links>
-            <Option smooth to="/#home">
-              <Text tid="option1" />
-            </Option>
-            <Option
-              smooth
-              to="/#about-us"
-              scroll={(el) => scrollWithOffset(el, -150)}
-            >
-              <Text tid="option2" />
-            </Option>
-            <Option smooth to="/#services" 
-              scroll={(el) => scrollWithOffset(el, -150)}>
-              <Text tid="option3" />
-            </Option>
-            <Option smooth to="/#contact">
-              <Text tid="option4" />
-            </Option>
+            <Option href="/#home">Home</Option>
+            <Option href="/#about-us">Our Clinic</Option>
+            <Option href="/#services">Care & Services</Option>
+            <Option href="/#contact">Contact Us</Option>
           </Links>
         ) : !rollDown ? (
           <Burger onClick={() => setRollDown(true)} />
         ) : (
           <Cross onClick={() => setRollDown(false)} />
         )}
-        {/* <LanguageSelector /> */}
       </Content>
       <Menu rollDown={rollDown} setRollDown={setRollDown} />
       <ScrollTracker style={{ width: `${scrollPercentage}%` }}></ScrollTracker>
@@ -80,7 +58,7 @@ const Links = styled.div`
   width: 50%;
   justify-content: space-between;
 `;
-const Option = styled(HashLink)`
+const Option = styled(Link)`
   color: var(--eerie-black);
   text-decoration: none;
   text-align: center;

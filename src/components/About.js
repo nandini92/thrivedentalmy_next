@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import { RiDoubleQuotesL } from "react-icons/ri";
 import { RiDoubleQuotesR } from "react-icons/ri";
-import Image from 'next/image'
-
-import { Text } from "../contexts/LanguageContext";
 
 const About = ({ opacity }) => {
   const imageCarouselGenerator = () => {
@@ -11,7 +8,11 @@ const About = ({ opacity }) => {
 
     for (let i = 1; i < 11 + 1; i++) {
       images.push(
-        <img src={`/assets/clinic/clinic_${i}.jpg`} alt={`clinic_${i}`} key={`clinic_${i}`}/>
+        <img
+          src={`/assets/clinic/clinic_${i}.jpg`}
+          alt={`clinic_${i}`}
+          key={`clinic_${i}`}
+        />
       );
     }
 
@@ -42,7 +43,12 @@ const About = ({ opacity }) => {
           <p>
             <QuotesL />{" "}
             <span>
-              <Text tid="aboutUsDescription" />
+              Our mission is to raise awareness on the impact of oral health to
+              overall health through preventive dentistry. A perfect smile is
+              timeless, which is why we offer a comprehensive selection of
+              general and cosmetic dental services for patients of all ages,
+              from pediatric dentistry to dental implants and dentures for the
+              older adult.
             </span>{" "}
             <QuotesR />
           </p>

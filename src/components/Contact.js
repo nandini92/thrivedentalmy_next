@@ -1,71 +1,70 @@
+'use client'
+
 import styled from "styled-components";
-import { useContext } from "react";
 import { BsFacebook } from "react-icons/bs";
 import { FaCopyright } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { IoCall, IoLocation } from "react-icons/io5";
 import { RiInstagramFill } from "react-icons/ri";
 
-import { Text, LanguageContext } from "../contexts/LanguageContext";
+import Link from "next/link";
 
 const Contact = ({ opacity }) => {
-  const { dictionary } = useContext(LanguageContext);
-
   return (
     <Wrapper id="contact" opacity={opacity}>
       <ContactWrapper>
         <Title>
-          <Text tid="ContactTitle" />
+          Want to schedule an appointment?
         </Title>
         <Card>
           <Info>
             <Mail />
             <div>
-              <a
+              <Link
                 href="mailto:thrivedentalmy@gmail.com"
                 style={{ fontWeight: 600 }}
               >
                 thrivedentalmy@gmail.com
-              </a>
+              </Link>
               <p>Send us an email</p>
             </div>
           </Info>
           <Info>
             <Call />
             <div>
-              <a href="tel:+60 10-234 1229" style={{ fontWeight: 600 }}>
+              <Link href="tel:+60 10-234 1229" style={{ fontWeight: 600 }}>
                 +60 10-234 1229
-              </a>
+              </Link>
               <p>Book an appointment</p>
             </div>
           </Info>
           <Info>
             <Pin />
             <div>
-              <a
+              <Link
                 href="https://goo.gl/maps/E68nJFzKiJuCx3rK6"
                 target="_blank"
                 style={{ fontWeight: 600 }}
               >
                 Block C-GF-13, Damansara Intan,
-              </a>
+              </Link>
               <p>47400, Petaling Jaya</p>
             </div>
           </Info>
           <Info>
             <div>
-              <a
+              <Link
                 href="https://www.facebook.com/thrivedentalmy/about"
                 target="_blank"
               >
                 <Facebook />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="https://www.instagram.com/thrivedentalmy/?hl=en"
                 target="_blank"
               >
                 <Instagram />
-              </a>
+              </Link>
             </div>
             <p>
               Follow us on social media{" "}

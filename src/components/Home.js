@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { HashLink } from "react-router-hash-link";
-import { Text } from "../contexts/LanguageContext";
 
-const Home = ({ scrollPercentage }) => {
+import Link from "next/link";
+
+const Home = () => {
   const [height, setHeight] = useState([100, 0]);
   const [imageNum, setImageNum] = useState(1);
 
@@ -24,52 +24,31 @@ const Home = ({ scrollPercentage }) => {
     <Wrapper id="home" imagenum={imageNum}>
       <TextWrapper>
         <TitleText>
-          <Title>
-            <Text tid="landingHeader1" />
-          </Title>
-          <Title2>
-            <Text tid="landingHeader2" />
-          </Title2>
+          <Title>Where Oral Health</Title>
+          <Title2>Is Overall Health</Title2>
         </TitleText>
-        {window.screen.width > 1000 && (
-          <Description>
-            <Text tid="landingDescription" />
-          </Description>
-        )}
-        {window.screen.width > 1000 ? (
-          <Button
-            smooth
-            to="/#contact"
-          >
-            <Text tid="option4" />
-          </Button>
-        ) : (
-          <Button
-            smooth
-            to="/#contact"
-            style={{zIndex:1000}}
-            position={scrollPercentage > 13 ? "fixed" : "static"}
-            top={scrollPercentage > 9 ? "100px" : undefined}
-            opacity={scrollPercentage > 95 ? "0" : "1"}
-          >
-            <Text tid="option4" />
-          </Button>
-        )}
+        <Description>
+          THRIVE DENTAL was established to provide healthy and beautiful smiles
+          for all ages and abilities. Located on the ground floor with a
+          dedicated drop-off area and spacious walkways, we are committed to
+          providing accessible care for our rapidly growing ageing population.
+          We provide high-quality, personalized dentistry in our
+          state-of-the-art facility to give you the smile you've always wanted.
+        </Description>
+        <Button href="/#contact">Contact Us</Button>
       </TextWrapper>
-      {window.screen.width > 1000 && (
-        <Images>
-          <Image1 imagenum={imageNum}>
-            <Hue1 height={height[0]}></Hue1>
-          </Image1>
-          <Image2
-            imagenum={imageNum}
-            onMouseEnter={() => setHeight([0, 100])}
-            onMouseLeave={() => setHeight([100, 0])}
-          >
-            <Hue2 height={height[1]}></Hue2>
-          </Image2>
-        </Images>
-      )}
+      <Images>
+        <Image1 imagenum={imageNum}>
+          <Hue1 height={height[0]}></Hue1>
+        </Image1>
+        <Image2
+          imagenum={imageNum}
+          onMouseEnter={() => setHeight([0, 100])}
+          onMouseLeave={() => setHeight([100, 0])}
+        >
+          <Hue2 height={height[1]}></Hue2>
+        </Image2>
+      </Images>
     </Wrapper>
   );
 };
@@ -80,33 +59,12 @@ const Wrapper = styled.section`
   padding-top: 26vh;
   height: 95vh;
   /* margin: 0 15%; */
-
-  @media (width < 1000px) {
-    display: block;
-    padding-top: 65vh;
-    background-image: ${(props) =>
-      `url("/assets/home/mobileImage_${props.imagenum}.jpg")`};
-    background-size: cover;
-    background-position-x: center;
-    background-position-y: top;
-    margin: 0;
-    height: 100vh;
-
-    transition: background-image 0.5s ease-in-out;
-  }
 `;
 const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   /* margin-right: 10%; */
   width: 45vw;
-
-  @media (width < 1000px) {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 `;
 const TitleText = styled.div`
   /* padding-top: 50px; */
@@ -114,13 +72,6 @@ const TitleText = styled.div`
   z-index: 1;
   font-size: 5rem;
   margin-bottom: 5vh;
-
-  @media (width < 1000px) {
-    text-align: center;
-    padding: 0px;
-    position: relative;
-    font-size: 2.5em;
-  }
 `;
 const Title = styled.h1`
   font-weight: 300;
@@ -147,10 +98,6 @@ const Title2 = styled.h1`
   animation: slideLeft 1s;
   color: var(--zomp);
 
-  @media (width < 1000px) {
-    padding-left: 0px;
-  }
-
   @keyframes slideLeft {
     from {
       transform: translateX(100%);
@@ -158,24 +105,12 @@ const Title2 = styled.h1`
     }
   }
 `;
-// const Desc = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: top;
-
-//   @media (width < 1000px) {
-//   width: 100%;
-//   margin-top: 150px;
-//   align-self: start;
-//   align-items: center;
-//   }
-// `;
 const Description = styled.p`
   font-weight: 300;
   line-height: 1.5rem;
   margin-bottom: 5vh;
 `;
-const Button = styled(HashLink)`
+const Button = styled(Link)`
   cursor: pointer;
   font-weight: 600;
   color: var(--eerie-black);

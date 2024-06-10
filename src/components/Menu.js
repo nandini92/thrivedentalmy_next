@@ -1,9 +1,9 @@
+"use client";
+
 import styled from "styled-components";
-import { HashLink } from "react-router-hash-link";
+import Link from "next/link";
 
-import { Text } from "../contexts/LanguageContext";
-
-const Menu = ({rollDown, setRollDown}) => {
+const Menu = ({ rollDown, setRollDown }) => {
   const scrollWithOffset = (el, yOffset) => {
     const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
     window.scrollTo({ top: yCoordinate + yOffset, behavior: "smooth" });
@@ -13,19 +13,12 @@ const Menu = ({rollDown, setRollDown}) => {
     <Dropdown onClick={() => setRollDown(false)}>
       {rollDown && (
         <>
-          <Option smooth to="/#home">
-            <Text tid="option1" />
+          <Option href="/#home">Home</Option>
+          <Option href="/#about-us">Our Clinic</Option>
+          <Option href="/#services">
+            Care & Services
           </Option>
-          <Option smooth to="/#about-us">
-            <Text tid="option2" />
-          </Option>
-          <Option smooth to="/#services"
-          scroll={(el) => scrollWithOffset(el, -100)}>
-            <Text tid="option3" />
-          </Option>
-          <Option smooth to="/#contact">
-            <Text tid="option4" />
-          </Option>
+          <Option href="/#contact">Contact Us</Option>
         </>
       )}
     </Dropdown>
@@ -39,7 +32,7 @@ const Dropdown = styled.div`
   flex-direction: column;
 `;
 
-const Option = styled(HashLink)`
+const Option = styled(Link)`
   color: var(--light-grey);
   width: 100%;
   text-decoration: none;

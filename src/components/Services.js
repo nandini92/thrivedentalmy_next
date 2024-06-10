@@ -1,37 +1,30 @@
 import styled from "styled-components";
 
-import { Text } from "../contexts/LanguageContext";
-
 const Services = ({ opacity }) => {
-  const serviceTextGenerator = (start, end) => {
-    const products = [];
-
-    for (let i = start; i < end + 1; i++) {
-      products.push(
-        <p key={`productType-${i}`}>
-          <Text tid={`productType${i}`}/>
-        </p>
-      );
-    }
-
-    return products;
-  };
-
   return (
     <Wrapper id="services" opacity={opacity}>
       <Title>Care & Services</Title>
       <Content>
         <Block key="block-1">
           <Image src="/assets/services/productType1.jpg" />
-          {serviceTextGenerator(1, 4)}
+          <p key="productType1">Consultation</p>
+          <p key="productType2">X-rays</p>
+          <p key="productType3">Gum & Bone Assessment</p>
+          <p key="productType4">Geriatric (Senior Adult) Dental Assessment</p>
         </Block>
         <Block key="block-2">
           <Image src="/assets/services/productType2.jpg" />
-          {serviceTextGenerator(5, 7)}
+          <p key="productType5">Scaling & Air Polishing</p>
+          <p key="productType6">Dental Fillings</p>
+          <p key="productType7">Teeth Whitening</p>
         </Block>
         <Block key="block-3">
           <Image src="/assets/services/productType3.jpg" />
-          {serviceTextGenerator(8, 12)}
+          <p key="productType8">Root Canal Treatment</p>
+          <p key="productType9">Crown & Bridge</p>
+          <p key="productType10">Wisdom Tooth Surgery</p>
+          <p key="productType11">Dentures</p>
+          <p key="productType12">Dental Implants</p>
         </Block>
       </Content>
     </Wrapper>
